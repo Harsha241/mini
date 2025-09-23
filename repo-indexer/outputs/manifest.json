@@ -1,0 +1,13 @@
+{
+  "scanned_folders": 6,
+  "total_files": 15,
+  "parsed_files": 15,
+  "failed_files": 0,
+  "total_chunks": 15,
+  "chunks_by_language": {
+    "javascript": 11,
+    "unknown": 4
+  },
+  "avg_chunk_tokens": 1000,
+  "timestamp": "2025-09-21T12:50:40.233771"
+}

@@ -1,0 +1,47 @@
+project-root/
+│── README.md                  # High-level documentation
+│── requirements.txt            # Python dependencies (tree-sitter, chromadb, neo4j, etc.)
+│── config/
+│   └── settings.yaml           # Config files (DB connection, chunk sizes, etc.)
+│
+├── data/                       # Stores raw input/output
+│   ├── uploads/                # User uploaded folders/files
+│   ├── processed/              # Processed AST + chunks
+│   └── embeddings/             # Vector DB / graph DB dump
+│
+├── src/                        # Main source code
+│   ├── ingestion/              # Input & file handling
+│   │   ├── file_loader.py      # Local folder + GitHub clone support
+│   │   └── file_walker.py      # os.walk based traversal
+│   │
+│   ├── parsing/                # Tree-sitter based parsing
+│   │   ├── parser.py           # AST generation
+│   │   ├── queries/            # Tree-sitter queries (per language)
+│   │   │   ├── java.scm
+│   │   │   ├── python.scm
+│   │   │   └── javascript.scm
+│   │   └── chunker.py          # Smart chunking + overlap logic
+│   │
+│   ├── storage/                # Storage layer
+│   │   ├── vector_store.py     # Store embeddings (FAISS/Chroma)
+│   │   └── graph_store.py      # Store AST graph (Neo4j / Memgraph / TigerGraph)
+│   │
+│   ├── rag/                    # Retrieval & augmentation
+│   │   ├── retriever.py        # Query both vector + graph DB
+│   │   └── pipeline.py         # Combine results for LLM
+│   │
+│   ├── validation/             # Post-processing checks
+│   │   └── ast_validator.py    # Use AST again to detect hallucinations
+│   │
+│   └── utils/                  # Helper functions
+│       ├── logger.py
+│       └── helpers.py
+│
+├── notebooks/                  # Jupyter/Colab experiments
+│   └── prototype_chunking.ipynb
+│
+└── tests/                      # Unit & integration tests
+    ├── test_parser.py
+    ├── test_chunker.py
+    ├── test_vector_store.py
+    └── test_validator.py

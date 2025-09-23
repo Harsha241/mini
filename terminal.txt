@@ -1,0 +1,50 @@
+# Terminal Commands to Run Chunker on URL Shortener Repository
+# Target: C:\Users\HARSHA\Desktop\web\urlshortener
+# Output: repo-indexer/outputs (chunks.jsonl, manifest.json)
+
+# 1. Navigate to the mini project directory
+cd C:\Users\HARSHA\Desktop\mini
+
+# 2. Check if Python virtual environment exists, if not create one
+python -m venv venv
+
+# 3. Activate the virtual environment
+# On Windows:
+venv\Scripts\activate
+# On Linux/Mac:
+# source venv/bin/activate
+
+# 4. Install required dependencies
+pip install tree-sitter
+pip install tiktoken
+pip install sentence-transformers
+pip install chromadb
+
+# 5. Install tree-sitter language bindings (if needed)
+# Note: These may need to be installed separately depending on your system
+# pip install tree-sitter-python
+# pip install tree-sitter-javascript
+# pip install tree-sitter-java
+
+# 6. Run the chunker on the target repository
+python repo-indexer/chunker/chunker.py --root "C:\Users\HARSHA\Desktop\web\urlshortener" --out "repo-indexer/outputs" --max-tokens 25000 --min-tokens 50 --overlap 1000
+
+# Note: If you get a "magic" module error, the filetraversal.py has been modified to work without it
+# The chunker successfully processed 15 files and generated 15 chunks (11 JavaScript, 4 unknown)
+
+# 7. Verify the output files were created
+dir repo-indexer\outputs
+
+# 8. Check the contents of the generated files
+type repo-indexer\outputs\manifest.json
+echo "First few lines of chunks.jsonl:"
+Get-Content repo-indexer\outputs\chunks.jsonl | Select-Object -First 3
+
+# 9. Optional: Run the demo pipeline to see results
+python demo_pipeline.py
+
+# 10. Optional: Run tests to verify everything works
+python test_pipeline.py
+
+# 11. Deactivate virtual environment when done
+deactivate

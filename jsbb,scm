@@ -1,0 +1,16 @@
+; Capture classes and methods
+(class_declaration
+  name: (identifier) @class.name
+  body: (class_body
+         (method_declaration
+           name: (identifier) @method.name)))
+
+; Capture interfaces
+(interface_declaration
+  name: (identifier) @interface.name
+  body: (interface_body
+         (method_declaration
+           name: (identifier) @method.name)))
+
+; Capture comments
+(comment) @comment
