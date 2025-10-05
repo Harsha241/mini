@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
-Generate embeddings for code chunks using SentenceTransformers and store in ChromaDB.
+Embeds code chunks from JSONL into a persistent ChromaDB collection.
+Leverages SentenceTransformers for embeddings with normalization and batching.
+CLI supports batch size, force re-embed, dry-run and environment overrides.
 """
 
 import argparse
@@ -204,7 +206,7 @@ class ChromaEmbedder:
                             embeddings = self.embed_batch(chunks)
                             if embeddings:
                                 self.insert_batch(chunks, embeddings, force)
-                                total_inserted += len([c for c in chunks if c['id'] not in []]])
+                                total_inserted += len(chunks)
                         else:
                             logging.info(f"DRY RUN: Would process batch of {len(chunks)} chunks")
                             total_inserted += len(chunks)
@@ -228,7 +230,7 @@ class ChromaEmbedder:
                 embeddings = self.embed_batch(chunks)
                 if embeddings:
                     self.insert_batch(chunks, embeddings, force)
-                    total_inserted += len([c for c in chunks if c['id'] not in []]])
+                    total_inserted += len(chunks)
             else:
                 logging.info(f"DRY RUN: Would process final batch of {len(chunks)} chunks")
                 total_inserted += len(chunks)

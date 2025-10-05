@@ -1,0 +1,29 @@
+2025-10-05 19:27:17,242 - ERROR - Fatal error: sentence-transformers not installed. Run: pip install sentence-transformers
+2025-10-05 19:36:13,776 - INFO - Use pytorch device_name: cpu
+2025-10-05 19:36:13,777 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-10-05 19:36:18,730 - INFO - Loaded model: all-mpnet-base-v2
+2025-10-05 19:36:19,230 - INFO - Connected to ChromaDB at repo-indexer\chroma_store
+2025-10-05 19:36:19,231 - INFO - Processing chunks from repo-indexer\outputs\chunks.jsonl
+2025-10-05 19:36:19,345 - INFO - DRY RUN: Would process final batch of 45 chunks
+2025-10-05 19:36:19,346 - INFO - Processing complete. Total processed: 45, Total inserted: 45
+2025-10-05 19:43:34,306 - INFO - Use pytorch device_name: cpu
+2025-10-05 19:43:34,307 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-10-05 19:43:38,861 - INFO - Loaded model: all-mpnet-base-v2
+2025-10-05 19:43:39,214 - INFO - Connected to ChromaDB at repo-indexer\chroma_store
+2025-10-05 19:43:39,214 - INFO - Processing chunks from repo-indexer\outputs\chunks.jsonl
+2025-10-05 19:43:39,335 - INFO - DRY RUN: Would process final batch of 45 chunks
+2025-10-05 19:43:39,335 - INFO - Processing complete. Total processed: 45, Total inserted: 45
+2025-10-05 19:53:35,468 - INFO - Use pytorch device_name: cpu
+2025-10-05 19:53:35,469 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-10-05 19:53:41,664 - INFO - Loaded model: all-mpnet-base-v2
+2025-10-05 19:53:42,001 - INFO - Connected to ChromaDB at repo-indexer\chroma_store
+2025-10-05 19:53:42,001 - INFO - Processing chunks from repo-indexer\outputs\chunks.jsonl
+2025-10-05 19:54:19,753 - INFO - Inserted 45 chunks into ChromaDB
+2025-10-05 19:54:19,775 - INFO - Processing complete. Total processed: 45, Total inserted: 45
+2025-10-05 20:07:25,709 - INFO - Use pytorch device_name: cpu
+2025-10-05 20:07:25,710 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-10-05 20:07:31,381 - INFO - Loaded model: all-mpnet-base-v2
+2025-10-05 20:07:31,776 - INFO - Connected to ChromaDB at repo-indexer\chroma_store
+2025-10-05 20:07:31,777 - INFO - Processing chunks from repo-indexer\outputs\chunks.jsonl
+2025-10-05 20:08:08,157 - INFO - Inserted 45 chunks into ChromaDB
+2025-10-05 20:08:08,178 - INFO - Processing complete. Total processed: 45, Total inserted: 45

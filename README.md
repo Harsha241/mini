@@ -1,3 +1,19 @@
+## Quick start (Windows)
+
+Use the one-command runner to execute chunking and embeddings end-to-end. The script will prompt you for the repository to index and where to store ChromaDB data.
+
+```powershell
+PowerShell -ExecutionPolicy Bypass -File run_pipeline.ps1
+```
+
+Alternatively, run the individual modules:
+
+```powershell
+python -m repo_indexer.chunker.chunker --root . --out repo-indexer/outputs
+python -m repo_indexer.embeddings.embed_chroma --chunks repo-indexer/outputs/chunks.jsonl --chroma-path ./repo-indexer/chroma_store
+python -m repo_indexer.retrieval.query --query "how is authentication implemented?" --chroma-path ./repo-indexer/chroma_store --format text
+```
+
 # Repository Indexer
 
 A comprehensive codebase indexing and RAG (Retrieval-Augmented Generation) pipeline that uses Tree-sitter for AST-aware chunking and ChromaDB for vector storage.

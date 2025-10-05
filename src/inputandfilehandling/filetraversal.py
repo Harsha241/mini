@@ -1,4 +1,8 @@
-# file traversal code
+"""
+Simple, dependency-light file system traversal utilities used by the chunker.
+Provides callbacks for folders and files with basic ignore pattern support.
+Detects text files via extension set and lightweight content sniffing.
+"""
 from pathlib import Path
 import fnmatch
 from typing import Callable, List, Optional
@@ -120,46 +124,27 @@ def traverse_file_system(params: TraverseFileSystemParams):
         print(f"Error during traversal: {e}")
 
 def main():
-    # Example callbacks
-    def file_callback(file_params: ProcessFileParams):
-        print(f"Processing file: {file_params.file_path}")
+    # Minimal interactive example
+    folder = input("Enter a folder to traverse: ").strip()
+    if not folder:
+        print("No folder provided.")
+        return
 
-    def folder_callback(folder_params: ProcessFolderParams):
-        print(f"Processing folder: {folder_params.folder_path}")
-
-    # Configure traversal
     params = TraverseFileSystemParams(
-        input_path="/Users/HARSHA/Desktop/preg/Pregnancy-Tracker",  # Replace with your folder path
-        process_file=file_callback,
-        process_folder=folder_callback,
+        input_path=folder,
+        process_file=lambda fp: print(f"Processing file: {fp.file_path}"),
+        process_folder=lambda fr: print(f"Processing folder: {fr.folder_path}"),
         ignore=[
-            # Python cache / environment
             "__pycache__", "*.pyc", ".venv", "env", ".env",
-
-            # Git / version control
             ".git", ".gitignore", ".gitattributes",
-
-            # Node / JS
-            "node_modules", "package-lock.json", "yarn.lock", "*.json",
-
-            # IDE / Editor
-            ".idea", ".vscode", "*.sublime-*", "*.md",
-
-            # System / OS
+            "node_modules", "package-lock.json", "yarn.lock",
+            ".idea", ".vscode", "*.sublime-*",
             ".DS_Store", "Thumbs.db",
-
-            # Logs / temp
             "*.log", "*.tmp", "*.swp",
-
-            # Docker / configs
             "Dockerfile", "*.dockerfile", ".dockerignore",
-
-            # Other unwanted
-            "*.env", ".env.example", "venv", "*.egg-info","*.txt"
+            "*.env", ".env.example", "venv", "*.egg-info"
         ]
     )
-
-    # Start traversal
     traverse_file_system(params)
 
 if __name__ == "__main__":

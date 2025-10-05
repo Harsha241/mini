@@ -1,13 +1,14 @@
 {
-  "scanned_folders": 6,
-  "total_files": 15,
-  "parsed_files": 15,
+  "scanned_folders": 10,
+  "total_files": 38,
+  "parsed_files": 38,
   "failed_files": 0,
-  "total_chunks": 15,
+  "total_chunks": 45,
   "chunks_by_language": {
-    "javascript": 11,
-    "unknown": 4
+    "python": 9,
+    "unknown": 14,
+    "javascript": 22
   },
   "avg_chunk_tokens": 1000,
-  "timestamp": "2025-09-21T12:50:40.233771"
+  "timestamp": "2025-10-05T19:53:17.375961"
 }

@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
-Pilot script to test the repo indexing pipeline.
+Pilot script to validate the indexing-and-retrieval pipeline end-to-end.
+Loads sample chunks, embeds a pilot subset, runs a sample query, and reports.
+Intended for quick sanity checks of Chroma and embeddings wiring.
 """
 
 import json

@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
-AST-aware code chunker using Tree-sitter for Python, JavaScript, and Java.
+AST-aware code chunker producing JSONL chunks and a manifest.
+Prefers Tree-sitter when configured; otherwise falls back to line-based chunking.
+Integrates with traversal utilities and supports overlap/size controls.
 """
 
 import argparse
@@ -546,7 +548,9 @@ class RepoChunker:
 
 
 def main():
-    """Main CLI entry point."""
+    """Main CLI entry point.
+    If --root is omitted or left as '.', prompt the user for an input directory interactively.
+    """
     parser = argparse.ArgumentParser(description="AST-aware code chunker")
     parser.add_argument("--root", default=".", help="Repository root path")
     parser.add_argument("--out", default="repo-indexer/outputs", help="Output directory")
@@ -557,8 +561,17 @@ def main():
     
     args = parser.parse_args()
     
+    root = args.root
+    if root in (".", ""):
+        try:
+            user_input = input("Enter the directory to index (absolute or relative path): ").strip()
+            if user_input:
+                root = user_input
+        except EOFError:
+            pass
+    
     chunker = RepoChunker(
-        root_path=args.root,
+        root_path=root,
         output_dir=args.out,
         max_tokens=args.max_tokens,
         min_tokens=args.min_tokens,

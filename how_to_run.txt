@@ -1,0 +1,47 @@
+HOW TO RUN
+
+1) Install minimal runtime dependencies (in your existing venv)
+   PowerShell:
+   .\venv\Scripts\pip.exe install --disable-pip-version-check sentence-transformers chromadb
+
+2) Run the end-to-end pipeline (non-interactive)
+   PowerShell:
+   PowerShell -ExecutionPolicy Bypass -File run_pipeline.ps1 -RootPath "C:\Users\HARSHA\Desktop\calibrations" -OutputDir repo-indexer\outputs -ChromaPath repo-indexer\chroma_store
+
+   -RootPath: directory to index (your repo)
+   -OutputDir: where chunks.jsonl/manifest.json are written
+   -ChromaPath: persistent ChromaDB folder
+
+3) Run interactively (prompts for paths)
+   PowerShell:
+   PowerShell -ExecutionPolicy Bypass -File run_pipeline.ps1
+
+4) Query the vector store manually (optional)
+   PowerShell:
+   .\venv\Scripts\python.exe -m repo_indexer.retrieval.query --query "how is authentication implemented?" --chroma-path repo-indexer\chroma_store --format text
+
+5) Troubleshooting
+   - If you see "sentence-transformers not installed": run step 1 again.
+   - If Python cannot find modules under repo-indexer/: ensure you run commands from the project root: C:\Users\HARSHA\Desktop\mini
+   - If chunking finds 0 files: verify -RootPath points to your code folder, not an empty directory.
+
+6) Optional: run pilot sanity check
+   PowerShell:
+   .\venv\Scripts\python.exe -m repo_indexer.run_pilot --chunks repo-indexer\outputs\chunks.jsonl --chroma-path repo-indexer\chroma_store --model all-mpnet-base-v2 --query "how is authentication implemented?"
+
+7) Automated test runner (generates JSON report)
+   - Dry test (no real embeddings insert):
+     .\venv\Scripts\python.exe tools\run_all_tests.py --root "C:\Users\HARSHA\Desktop\calibrations" --out repo-indexer\outputs --chroma repo-indexer\chroma_store
+   - Full embeddings (longer):
+     .\venv\Scripts\python.exe tools\run_all_tests.py --root "C:\Users\HARSHA\Desktop\calibrations" --out repo-indexer\outputs --chroma repo-indexer\chroma_store --full-embed
+   - Report written to: test_outputs\run_report.json
+
+8) Neo4j call-graph (optional, requires Docker and Joern CSVs)
+   - Start Neo4j (Docker):
+     cd docker\neo4j
+     docker compose up -d
+   - Ingest Joern CSVs (replace path):
+     .\venv\Scripts\python.exe -m repo_indexer.graph.neo4j_ingest --csv-dir "C:\path\to\joern_csvs" --bolt bolt://localhost:7687 --user neo4j --password test-password
+
+9) Colab demo (optional)
+   - Open colab\gemma_rag_demo.ipynb in Colab, set env vars: CHROMA_PATH, NEO4J_URI/USER/PASSWORD, and HF_TOKEN if needed, then run all cells.

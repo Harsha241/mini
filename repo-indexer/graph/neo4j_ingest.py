@@ -1,14 +1,8 @@
 #!/usr/bin/env python3
 """
-Ingest Joern-exported Neo4j CSVs into a running Neo4j instance and create indexes.
-
-Usage:
-  python -m repo_indexer.graph.neo4j_ingest --csv-dir tools/joern/out/neo4j_csvs --bolt bolt://localhost:7687 --user neo4j --password test-password
-
-Notes:
-  - Expects Neo4j 5.x with APOC plugin enabled (docker compose provided).
-  - Uses Cypher LOAD CSV to import nodes and relationships.
-  - Fails fast with clear error messages if CSVs or Neo4j are unavailable.
+Imports Joern-exported CSVs into Neo4j and sets up useful indexes.
+Designed to run against the provided Docker Neo4j or a local instance.
+Fails fast with clear errors when CSVs or connection details are invalid.
 """
 import argparse
 import os
@@ -126,5 +120,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 

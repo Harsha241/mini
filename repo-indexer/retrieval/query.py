@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
-Query interface for retrieving code chunks from ChromaDB.
+Query interface for retrieving code chunks from ChromaDB using semantic search.
+Wraps SentenceTransformers for query embeddings and exposes simple filters.
+Used by pilots and downstream tools to fetch relevant code context.
 """
 
 import argparse

@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""
+Tiny helpers to build a call-graph context from Neo4j for a code chunk.
+Given a chunk or function names, we fetch nearby functions and edges and
+return a compact, model-friendly text summary of the graph.
+"""
 from __future__ import annotations
 
 import re
@@ -135,5 +140,6 @@ def serialize_graph_for_model(nodes: List[GraphNode], edges: List[GraphEdge], ma
 
     text = "\n".join(lines)
     return _truncate(text, max_chars)
+
 
 

@@ -41,3 +41,4 @@ echo "[joern] Done. CPG at: $CPG_PATH"
 echo "$CPG_PATH" > "$OUT_DIR/.latest_cpg_path"
 
 
+

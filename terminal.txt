@@ -30,7 +30,7 @@ pip install chromadb
 python repo-indexer/chunker/chunker.py --root "C:\Users\HARSHA\Desktop\web\urlshortener" --out "repo-indexer/outputs" --max-tokens 25000 --min-tokens 50 --overlap 1000
 
 # Note: If you get a "magic" module error, the filetraversal.py has been modified to work without it
-# The chunker successfully processed 15 files and generated 15 chunks (11 JavaScript, 4 unknown)
+# The chunker successfully processed 15 files and generated 15 chunks (11 NJavaScript, 4 unknown)
 
 # 7. Verify the output files were created
 dir repo-indexer\outputs
